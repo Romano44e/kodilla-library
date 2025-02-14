@@ -1,11 +1,11 @@
 package com.crud.library.repository.title;
 
-import com.crud.library.domain.title.Title;
+import com.crud.library.domain.title.Book;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TitleRepository extends CrudRepository<Title, Integer> {
+public interface BookRepository extends CrudRepository<Book, Integer> {
 
 
 

@@ -1,7 +1,7 @@
 package com.crud.library.domain.copies;
 
 import com.crud.library.domain.loans.BookLoans;
-import com.crud.library.domain.title.Title;
+import com.crud.library.domain.title.Book;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,15 +18,15 @@ public class CopiesOfBooks {
     @Column(name = "ID", unique = true, nullable = false)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "TITLE_ID")
-    private Title title;
+//    @ManyToOne
+    @Column(name = "TITLE_ID")
+    private int titleId;
 
     @Column(name ="STATUS")
     private String status;
 
-    @ManyToOne
-    @JoinColumn(name = "BOOK_LOANS_ID")
-    private BookLoans bookLoans;
+//    @ManyToOne
+//    @Column(name = "BOOK_LOANS_ID")
+//    private BookLoans bookLoans;
 
 }

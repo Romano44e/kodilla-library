@@ -12,8 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @AllArgsConstructor
-@Entity(name = "TITLE")
-public class Title {
+@Entity(name = "BOOKS")
+public class Book {
 
 
     @Id
@@ -30,12 +30,12 @@ public class Title {
     @Column(name ="YEAR_OF_PUBLICATION")
     private int yearOfPublication;
 
-    @OneToMany(
-            targetEntity = CopiesOfBooks.class,
-            mappedBy = "title",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    private List<CopiesOfBooks> copiesOfBooks = new ArrayList<>();
+//    @OneToMany(
+//            targetEntity = CopiesOfBooks.class,
+//            mappedBy = "title",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.EAGER
+//    )
+//    private List<CopiesOfBooks> copiesOfBooks = new ArrayList<>();
 
 }

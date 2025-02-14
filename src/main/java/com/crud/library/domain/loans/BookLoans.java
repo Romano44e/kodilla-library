@@ -22,17 +22,20 @@ public class BookLoans {
     @Column(name = "ID", unique = true, nullable = false)
     private int id;
 
-    @OneToMany(
-            targetEntity = CopiesOfBooks.class,
-            mappedBy = "bookLoans",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    private List<CopiesOfBooks> copiesOfBooks = new ArrayList<>();
+//    @OneToMany(
+//            targetEntity = CopiesOfBooks.class,
+//            mappedBy = "bookLoans",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.EAGER
+//    )
+//    private List<CopiesOfBooks> copiesOfBooks = new ArrayList<>();
 
-    @OneToOne
-    @JoinColumn(name = "USER_ID")
-    private User user;
+//    @OneToOne
+    @Column(name = "COPY_OF_BOOK_ID")
+    private int copyOfBookId;
+
+    @Column(name = "USER_ID")
+    private int userId;
 
     @Column(name ="LOAN_DATE")
     private Date loanDate;

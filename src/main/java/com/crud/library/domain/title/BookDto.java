@@ -8,12 +8,12 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class TitleDto {
+public class BookDto {
 
     private int id;
     private String title;
     private String author;
     private int yearOfPublication;
-    private List<CopiesOfBooks> copiesOfBooks;
+//    private List<CopiesOfBooks> copiesOfBooks;
 
 }

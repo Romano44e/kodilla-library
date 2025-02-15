@@ -31,4 +31,20 @@ public class BookRepositoryTestSuite {
 
     }
 
+    @Test
+    void testGetBookByTitle() {
+        //Given
+        String title = "Potęga Teraźniejszości";
+
+        //When
+        Book book = bookRepository.getBookByTitle(title);
+        int id = book.getId();
+
+        //Then
+        assertEquals(1, id);
+        assertEquals("Eckhart Tolle", book.getAuthor());
+        assertEquals(2001, book.getYearOfPublication());
+
+    }
+
 }

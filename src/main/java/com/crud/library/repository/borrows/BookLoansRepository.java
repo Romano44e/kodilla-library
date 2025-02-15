@@ -1,4 +1,4 @@
-package com.crud.library.repository.loans;
+package com.crud.library.repository.borrows;
 
 import com.crud.library.domain.loans.BookLoans;
 import org.springframework.data.repository.CrudRepository;

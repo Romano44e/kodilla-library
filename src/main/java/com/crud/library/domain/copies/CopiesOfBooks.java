@@ -25,6 +25,9 @@ public class CopiesOfBooks {
     @Column(name ="STATUS")
     private String status;
 
+    @Column(name = "SIGNATURE")
+    private int signature;
+
 //    @ManyToOne
 //    @Column(name = "BOOK_LOANS_ID")
 //    private BookLoans bookLoans;

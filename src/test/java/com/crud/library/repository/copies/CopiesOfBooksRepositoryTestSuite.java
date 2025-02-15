@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -28,6 +30,23 @@ public class CopiesOfBooksRepositoryTestSuite {
 
         //CleanUp
 //        copiesOfBooksRepository.deleteById(id);
+
+    }
+
+    @Test
+    void testGetListOfCopiesOfBooksByTitleId() {
+        //Given
+        int id = 1;
+
+        //When
+        List<CopiesOfBooks> copiesOfBooksByTitleId = copiesOfBooksRepository.getCopiesOfBooksByTitleId(id);
+        CopiesOfBooks copiesOfBooks = copiesOfBooksByTitleId.get(0);
+        CopiesOfBooks copiesOfBooks1 = copiesOfBooksByTitleId.get(1);
+
+        //Then
+        assertEquals(2, copiesOfBooksByTitleId.size());
+        assertEquals(50000, copiesOfBooks.getSignature());
+        assertEquals(50001, copiesOfBooks1.getSignature());
 
     }
 

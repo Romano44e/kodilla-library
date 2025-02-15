@@ -13,5 +13,6 @@ public class CopiesOfBooksDto {
     private int id;
     private int titleId;
     private String status;
+    private int signature;
 
 }

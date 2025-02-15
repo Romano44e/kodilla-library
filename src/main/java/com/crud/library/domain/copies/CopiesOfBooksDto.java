@@ -11,8 +11,7 @@ public class CopiesOfBooksDto {
 
 
     private int id;
-    private Book book;
+    private int titleId;
     private String status;
-    private BookLoans bookLoans;
 
 }

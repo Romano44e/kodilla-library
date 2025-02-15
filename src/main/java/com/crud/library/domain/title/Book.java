@@ -38,4 +38,16 @@ public class Book {
 //    )
 //    private List<CopiesOfBooks> copiesOfBooks = new ArrayList<>();
 
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setYearOfPublication(int yearOfPublication) {
+        this.yearOfPublication = yearOfPublication;
+    }
 }

@@ -29,4 +29,13 @@ public class CopiesOfBooks {
 //    @Column(name = "BOOK_LOANS_ID")
 //    private BookLoans bookLoans;
 
+
+    public void setTitleId(int titleId) {
+        this.titleId = titleId;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 }

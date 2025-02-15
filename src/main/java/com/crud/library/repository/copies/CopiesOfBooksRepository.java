@@ -5,8 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CopiesOfBooksRepository extends CrudRepository<CopiesOfBooks, Long> {
+public interface CopiesOfBooksRepository extends CrudRepository<CopiesOfBooks, Integer> {
 
-
-
+        CopiesOfBooks save(CopiesOfBooks copiesOfBooks);
 }

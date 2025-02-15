@@ -27,4 +27,16 @@ public class User {
     @Column(name = "ACCOUNT_CREATION_DATE")
     private Date accountCreationDate;
 
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setAccountCreationDate(Date accountCreationDate) {
+        this.accountCreationDate = accountCreationDate;
+    }
 }

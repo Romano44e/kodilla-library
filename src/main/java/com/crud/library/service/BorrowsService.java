@@ -45,15 +45,22 @@ public class BorrowsService {
         BookLoans bookLoan = new BookLoans();
         bookLoan.setCopyOfBookId(firstAvailableBook.getId());
         bookLoan.setUserId(userId);
-//        bookLoan.setLoanDate(new Date(LocalDate.now().getYear(), LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth()));
-//        bookLoan.setReturnDate(new Date(LocalDate.now().getYear(), LocalDate.now().getMonthValue() + 1, LocalDate.now().getDayOfMonth()));
         bookLoan.setLoanDate(Date.valueOf(LocalDate.now()));
         bookLoan.setReturnDate(Date.valueOf(LocalDate.now().plusDays(30)));
 
         bookLoansRepository.save(bookLoan);
 
-//        return "Wypożyczono " + title + " o sygnaturze " + firstAvailableBook.getSignature() + " czytelnikowi " + nickName;
-    return "Wypożyczono książkę";
+        return "Wypożyczono " + title + " o sygnaturze " + firstAvailableBook.getSignature() + " czytelnikowi " + nickName;
+
+    }
+
+    public String returnBook(int signature, String nickName) {
+
+        int copyofBookIdBySignature = copiesOfBooksRepository.getCopyofBookIdBySignature(signature);
+        copiesOfBooksRepository.updateStatus(copyofBookIdBySignature, "dostępna");
+        bookLoansRepository.deleteByCopyOfBookId(copyofBookIdBySignature);
+
+        return "Czytelnik " + nickName + " oddał książkę o sygnaturze " + signature;
     }
 
 }

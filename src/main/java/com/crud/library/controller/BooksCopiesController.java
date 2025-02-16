@@ -24,7 +24,7 @@ public class BooksCopiesController {
     }
 
     @GetMapping("{title}")
-    public ResponseEntity<String> getBookCopy(@PathVariable String title) {
+    public ResponseEntity<String> getQuaintityOfBookCopies(@PathVariable String title) {
 
         String quantityOfAvailableCopies = booksCopiesService.getQuantityOfAvailableCopies(title);
         return ResponseEntity.ok(quantityOfAvailableCopies);

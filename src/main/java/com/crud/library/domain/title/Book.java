@@ -30,14 +30,6 @@ public class Book {
     @Column(name ="YEAR_OF_PUBLICATION")
     private int yearOfPublication;
 
-//    @OneToMany(
-//            targetEntity = CopiesOfBooks.class,
-//            mappedBy = "title",
-//            cascade = CascadeType.ALL,
-//            fetch = FetchType.EAGER
-//    )
-//    private List<CopiesOfBooks> copiesOfBooks = new ArrayList<>();
-
 
     public void setTitle(String title) {
         this.title = title;

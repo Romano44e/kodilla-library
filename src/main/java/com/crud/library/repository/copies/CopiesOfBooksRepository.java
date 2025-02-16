@@ -18,6 +18,10 @@ public interface CopiesOfBooksRepository extends CrudRepository<CopiesOfBooks, I
         List<CopiesOfBooks> getCopiesOfBooksByTitleId(int titleId);
         CopiesOfBooks getCopyOfBookById(int id);
 
+        @Transactional
+        @Query("SELECT c.id FROM COPIES_OF_BOOKS c WHERE c.signature = :signature")
+        int getCopyofBookIdBySignature(int signature);
+
         @Modifying
         @Transactional
         @Query("UPDATE COPIES_OF_BOOKS c SET c.status = :status WHERE c.id = :id")

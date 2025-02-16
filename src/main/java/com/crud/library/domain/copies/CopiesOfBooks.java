@@ -28,10 +28,6 @@ public class CopiesOfBooks {
     @Column(name = "SIGNATURE")
     private int signature;
 
-//    @ManyToOne
-//    @Column(name = "BOOK_LOANS_ID")
-//    private BookLoans bookLoans;
-
 
     public void setTitleId(int titleId) {
         this.titleId = titleId;

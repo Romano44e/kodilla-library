@@ -1,6 +1,7 @@
 package com.crud.library.controller;
 
 import com.crud.library.domain.loans.BorrowRequestDto;
+import com.crud.library.domain.loans.ReturnRequestDto;
 import com.crud.library.service.BorrowsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -23,9 +24,14 @@ public class BorrowsController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("{signature}")
-    public String delete(@PathVariable String signature) {
-        return "The book signatured " + signature + " returned successfully!";
+    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> returnBook(@RequestBody ReturnRequestDto returnRequestDto) {
+        int signature = returnRequestDto.getSignature();
+        String nickName = returnRequestDto.getNickName();
+
+        String response = borrowsService.returnBook(signature, nickName);
+
+        return ResponseEntity.ok(response);
     }
 
 }

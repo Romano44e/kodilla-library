@@ -14,6 +14,5 @@ public class BookDto {
     private String title;
     private String author;
     private int yearOfPublication;
-//    private List<CopiesOfBooks> copiesOfBooks;
 
 }

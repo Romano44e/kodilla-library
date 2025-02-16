@@ -15,11 +15,6 @@ public class BookController {
 
     private final BookService bookService;
 
-    @GetMapping(value = "{bookId}")
-    public BookDto getBook(@PathVariable("bookId") int bookId) {
-        return new BookDto(1, "Potęga Teraźniejszości", "Eckhart Tolle", 2001);
-    }
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createBook(@RequestBody BookDto bookDto) {
         Book book = new Book(bookDto.getId(), bookDto.getTitle(), bookDto.getAuthor(), bookDto.getYearOfPublication());

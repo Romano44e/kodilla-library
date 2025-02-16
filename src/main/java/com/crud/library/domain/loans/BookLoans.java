@@ -22,15 +22,7 @@ public class BookLoans {
     @Column(name = "ID", unique = true, nullable = false)
     private int id;
 
-//    @OneToMany(
-//            targetEntity = CopiesOfBooks.class,
-//            mappedBy = "bookLoans",
-//            cascade = CascadeType.ALL,
-//            fetch = FetchType.EAGER
-//    )
-//    private List<CopiesOfBooks> copiesOfBooks = new ArrayList<>();
 
-//    @OneToOne
     @Column(name = "COPY_OF_BOOK_ID")
     private int copyOfBookId;
 

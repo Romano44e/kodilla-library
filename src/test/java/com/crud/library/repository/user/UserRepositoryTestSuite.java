@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,6 +36,16 @@ public class UserRepositoryTestSuite {
         //CleanUp
         userRepository.deleteById(3);
 
+    }
+
+    @Test
+    void testGetUserByNickName() {
+        //Given
+        //When
+        User user = userRepository.getUserByNickName("narciarz_99");
+
+        //Then
+        assertEquals("Małysz", user.getLastName());
     }
 
 }

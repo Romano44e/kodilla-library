@@ -50,4 +50,23 @@ public class CopiesOfBooksRepositoryTestSuite {
 
     }
 
+    @Test
+    void testUpdateStatusOfCopiesOfBooks() {
+        //Given
+        int id = 5;
+
+        //When
+        CopiesOfBooks copyOfBookById1 = copiesOfBooksRepository.getCopyOfBookById(id);
+        String statusBeforeChange = copyOfBookById1.getStatus();
+
+        copiesOfBooksRepository.updateStatus(id, "wypożyczona");
+
+        CopiesOfBooks copyOfBookById2 = copiesOfBooksRepository.getCopyOfBookById(id);
+        String statusAfterChange = copyOfBookById2.getStatus();
+
+        //Then
+        assertEquals("dostępna", statusBeforeChange);
+        assertEquals("wypożyczona", statusAfterChange);
+    }
+
 }

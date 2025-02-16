@@ -43,4 +43,19 @@ public class BookLoans {
     @Column(name ="RETURN_DATE")
     private Date returnDate;
 
+    public void setCopyOfBookId(int copyOfBookId) {
+        this.copyOfBookId = copyOfBookId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setLoanDate(Date loanDate) {
+        this.loanDate = loanDate;
+    }
+
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
+    }
 }

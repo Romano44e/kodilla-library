@@ -1,6 +1,10 @@
 package com.crud.library.controller;
 
+import com.crud.library.domain.loans.BorrowRequestDto;
+import com.crud.library.service.BorrowsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -8,9 +12,15 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class BorrowsController {
 
-    @PostMapping(value = "{title}")
-    public String borrow(@PathVariable String title) {
-        return title + " borrowed successfully!";
+    private final BorrowsService borrowsService;
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> borrowBook(@RequestBody BorrowRequestDto borrowRequestDto) {
+        String title = borrowRequestDto.getTitle();
+        String nickName = borrowRequestDto.getNickName();
+
+        String response = borrowsService.borrowBook(title, nickName);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("{signature}")

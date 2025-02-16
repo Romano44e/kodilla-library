@@ -20,7 +20,7 @@ public class UserController {
 
     @GetMapping(value = "{userId}")
     public UserDto getUser(@PathVariable int userId) {
-        return new UserDto(1, "Roman", "Adamczyk", new Date());
+        return new UserDto(1, "Roman", "Adamczyk", new Date(), "chomik");
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -28,7 +28,7 @@ public class UserController {
         java.sql.Date date = new java.sql.Date(userDto.getAccountCreationDate().getTime());
 //        userDto.getAccountCreationDate();
 
-        User user = new User(userDto.getId(), userDto.getFirstName(), userDto.getLastName(), date);
+        User user = new User(userDto.getId(), userDto.getFirstName(), userDto.getLastName(), date, userDto.getNickName());
 
         userService.saveUser(user);
         return ResponseEntity.ok().build();

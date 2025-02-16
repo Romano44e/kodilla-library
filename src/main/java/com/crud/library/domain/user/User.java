@@ -27,6 +27,9 @@ public class User {
     @Column(name = "ACCOUNT_CREATION_DATE")
     private Date accountCreationDate;
 
+    @Column(name = "NICK_NAME", unique = true)
+    private String nickName;
+
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -38,5 +41,9 @@ public class User {
 
     public void setAccountCreationDate(Date accountCreationDate) {
         this.accountCreationDate = accountCreationDate;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 }

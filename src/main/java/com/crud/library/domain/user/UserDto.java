@@ -13,5 +13,7 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private Date accountCreationDate;
+    private String nickName;
+
 
 }

@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,14 +46,32 @@ public class BorrowsRepositoryTestSuite {
     }
 
     @Test
-    void deleteByCopyOfBookId() {
+    void testGetUserIdByCopyOfBookId() {
         //Given
-        int copyOfBookId = 6;
+        int copyOfBookId = 5;
         //When
-        bookLoansRepository.deleteByCopyOfBookId(copyOfBookId);
+        int userIdByCopyOfBookId = bookLoansRepository.getUserIdByCopyOfBookId(copyOfBookId);
         //Then
-        assertEquals(1, bookLoansRepository.count());
+        assertEquals(8, userIdByCopyOfBookId);
 
+    }
+
+    @Test
+    void testSetReturnDateOfBookCopy() {
+        //Given
+        int borrowsRepositoryId = 10;
+        int userId = 8;
+        int copyofBookIdBySignature = 5;
+        //When
+        bookLoansRepository.setReturnDateOfBookCopy(borrowsRepositoryId, Date.valueOf(LocalDate.now()));
+        List<BookLoans> allByUserId = bookLoansRepository.getAllByUserId(userId);
+        List<BookLoans> list = allByUserId.stream()
+                .filter(r -> r.getReturnDate() == null)
+                .filter(c -> c.getCopyOfBookId() == copyofBookIdBySignature)
+                .toList();
+
+        //Then
+        assertEquals(1, list.size());
     }
 
 }

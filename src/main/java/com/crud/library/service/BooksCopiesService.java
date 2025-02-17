@@ -1,6 +1,7 @@
 package com.crud.library.service;
 
 import com.crud.library.domain.copies.CopiesOfBooks;
+import com.crud.library.domain.copies.QuantityOfAvailableCopiesDto;
 import com.crud.library.domain.title.Book;
 import com.crud.library.repository.copies.CopiesOfBooksRepository;
 import com.crud.library.repository.title.BookRepository;
@@ -20,11 +21,11 @@ public class BooksCopiesService {
         return copiesOfBooksRepository.save(copiesOfBooks);
     }
 
-    public String getQuantityOfAvailableCopies(String title) {
+    public QuantityOfAvailableCopiesDto getQuantityOfAvailableCopies(String title) {
         Book book = bookRepository.getBookByTitle(title);
 
         if (book == null) {
-            return "Nie ma takiego tytułu w naszej bibliotece.";
+            return new QuantityOfAvailableCopiesDto(0, "nie ma takiej książki");
         }
 
         int id = book.getId();
@@ -35,13 +36,13 @@ public class BooksCopiesService {
                 .toList();
 
         if (availableCopiesOfBook.isEmpty()) {
-            return  "Aktualnie nie ma dostępnych do wypożyczenia żadnych egzemplarzy książki " + title;
+            return  new QuantityOfAvailableCopiesDto(0, title);
         }
 
-        int size = availableCopiesOfBook.size();
+        int quantity = availableCopiesOfBook.size();
 
 
-        return "Aktualnie dostępne do wypożyczenia są " + size + " egzemplarze książki " + title;
+        return new QuantityOfAvailableCopiesDto(quantity, title);
     }
 
 }

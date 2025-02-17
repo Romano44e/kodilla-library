@@ -2,6 +2,8 @@ package com.crud.library.service;
 
 import com.crud.library.domain.copies.CopiesOfBooks;
 import com.crud.library.domain.loans.BookLoans;
+import com.crud.library.domain.loans.BorrowResponseDto;
+import com.crud.library.domain.loans.ReturnResponseDto;
 import com.crud.library.domain.title.Book;
 import com.crud.library.domain.user.User;
 import com.crud.library.repository.borrows.BookLoansRepository;
@@ -26,7 +28,7 @@ public class BorrowsService {
     private final CopiesOfBooksRepository copiesOfBooksRepository;
     private final UserRepository userRepository;
 
-    public String borrowBook(String title, String nickName) {
+    public BorrowResponseDto borrowBook(String title, String nickName) {
         Book book = bookRepository.getBookByTitle(title);
 
         int id = book.getId();
@@ -46,21 +48,29 @@ public class BorrowsService {
         bookLoan.setCopyOfBookId(firstAvailableBook.getId());
         bookLoan.setUserId(userId);
         bookLoan.setLoanDate(Date.valueOf(LocalDate.now()));
-        bookLoan.setReturnDate(Date.valueOf(LocalDate.now().plusDays(30)));
 
         bookLoansRepository.save(bookLoan);
 
-        return "Wypożyczono " + title + " o sygnaturze " + firstAvailableBook.getSignature() + " czytelnikowi " + nickName;
+        return new BorrowResponseDto(bookLoan.getCopyOfBookId(), bookLoan.getUserId(), bookLoan.getLoanDate());
 
     }
 
-    public String returnBook(int signature, String nickName) {
+    public ReturnResponseDto returnBook(int signature, String nickName) {
 
         int copyofBookIdBySignature = copiesOfBooksRepository.getCopyofBookIdBySignature(signature);
         copiesOfBooksRepository.updateStatus(copyofBookIdBySignature, "dostępna");
-        bookLoansRepository.deleteByCopyOfBookId(copyofBookIdBySignature);
+        int userIdByCopyOfBookId = bookLoansRepository.getUserIdByCopyOfBookId(copyofBookIdBySignature);
 
-        return "Czytelnik " + nickName + " oddał książkę o sygnaturze " + signature;
+        List<BookLoans> allByUserId = bookLoansRepository.getAllByUserId(userIdByCopyOfBookId);
+        List<BookLoans> list = allByUserId.stream()
+                .filter(r -> r.getReturnDate() == null)
+                .filter(c -> c.getCopyOfBookId() == copyofBookIdBySignature)
+                .toList();
+        BookLoans first = list.getFirst();
+        int bookLoanId = first.getId();
+        bookLoansRepository.setReturnDateOfBookCopy(bookLoanId, Date.valueOf(LocalDate.now()));
+
+        return new ReturnResponseDto(copyofBookIdBySignature, userIdByCopyOfBookId, Date.valueOf(LocalDate.now()));
     }
 
 }

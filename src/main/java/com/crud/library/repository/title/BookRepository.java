@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 public interface BookRepository extends CrudRepository<Book, Integer> {
 
-
     Book save(Book book);
 
     Book getBookByTitle(String title);

@@ -2,6 +2,7 @@ package com.crud.library.controller;
 
 import com.crud.library.domain.copies.CopiesOfBooks;
 import com.crud.library.domain.copies.CopiesOfBooksDto;
+import com.crud.library.domain.copies.QuantityOfAvailableCopiesDto;
 import com.crud.library.service.BooksCopiesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -24,9 +25,9 @@ public class BooksCopiesController {
     }
 
     @GetMapping("{title}")
-    public ResponseEntity<String> getQuaintityOfBookCopies(@PathVariable String title) {
+    public ResponseEntity<QuantityOfAvailableCopiesDto> getQuaintityOfBookCopies(@PathVariable String title) {
 
-        String quantityOfAvailableCopies = booksCopiesService.getQuantityOfAvailableCopies(title);
+        QuantityOfAvailableCopiesDto quantityOfAvailableCopies = booksCopiesService.getQuantityOfAvailableCopies(title);
         return ResponseEntity.ok(quantityOfAvailableCopies);
     }
 

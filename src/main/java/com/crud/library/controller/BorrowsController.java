@@ -1,7 +1,9 @@
 package com.crud.library.controller;
 
 import com.crud.library.domain.loans.BorrowRequestDto;
+import com.crud.library.domain.loans.BorrowResponseDto;
 import com.crud.library.domain.loans.ReturnRequestDto;
+import com.crud.library.domain.loans.ReturnResponseDto;
 import com.crud.library.service.BorrowsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -16,22 +18,22 @@ public class BorrowsController {
     private final BorrowsService borrowsService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> borrowBook(@RequestBody BorrowRequestDto borrowRequestDto) {
+    public ResponseEntity<BorrowResponseDto> borrowBook(@RequestBody BorrowRequestDto borrowRequestDto) {
         String title = borrowRequestDto.getTitle();
         String nickName = borrowRequestDto.getNickName();
 
-        String response = borrowsService.borrowBook(title, nickName);
-        return ResponseEntity.ok(response);
+        BorrowResponseDto borrowResponseDto = borrowsService.borrowBook(title, nickName);
+        return ResponseEntity.ok(borrowResponseDto);
     }
 
-    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> returnBook(@RequestBody ReturnRequestDto returnRequestDto) {
+    @PutMapping (consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ReturnResponseDto> returnBook(@RequestBody ReturnRequestDto returnRequestDto) {
         int signature = returnRequestDto.getSignature();
         String nickName = returnRequestDto.getNickName();
 
-        String response = borrowsService.returnBook(signature, nickName);
+        ReturnResponseDto returnResponseDto = borrowsService.returnBook(signature, nickName);
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(returnResponseDto);
     }
 
 }

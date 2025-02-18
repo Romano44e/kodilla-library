@@ -20,7 +20,7 @@ public class UserRepositoryTestSuite {
     @Test
     void testUserRepositorySave() {
         //Given
-        Date date = new Date(2025, 2, 15);
+        LocalDate date = LocalDate.of(2025,2,15);
 
         User user = new User();
 

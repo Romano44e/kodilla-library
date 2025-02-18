@@ -9,7 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -24,7 +24,7 @@ public interface BookLoansRepository extends CrudRepository<BookLoans, Integer> 
     @Modifying
     @Transactional
     @Query("UPDATE BOOK_LOANS bl SET bl.returnDate = :returnDate WHERE bl.id = :id")
-    void setReturnDateOfBookCopy(@Param("id") int id, @Param("returnDate") Date returnDate);
+    void setReturnDateOfBookCopy(@Param("id") int id, @Param("returnDate") LocalDate returnDate);
 
     List<BookLoans> getAllByUserId(int userId);
 

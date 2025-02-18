@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @Getter
@@ -25,7 +25,7 @@ public class User {
     private String lastName;
 
     @Column(name = "ACCOUNT_CREATION_DATE")
-    private Date accountCreationDate;
+    private LocalDate accountCreationDate;
 
     @Column(name = "NICK_NAME", unique = true)
     private String nickName;
@@ -39,7 +39,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    public void setAccountCreationDate(Date accountCreationDate) {
+    public void setAccountCreationDate(LocalDate accountCreationDate) {
         this.accountCreationDate = accountCreationDate;
     }
 

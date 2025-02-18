@@ -7,8 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -30,10 +30,10 @@ public class BookLoans {
     private int userId;
 
     @Column(name ="LOAN_DATE")
-    private Date loanDate;
+    private LocalDate loanDate;
 
     @Column(name ="RETURN_DATE")
-    private Date returnDate;
+    private LocalDate returnDate;
 
     public void setCopyOfBookId(int copyOfBookId) {
         this.copyOfBookId = copyOfBookId;
@@ -43,11 +43,11 @@ public class BookLoans {
         this.userId = userId;
     }
 
-    public void setLoanDate(Date loanDate) {
+    public void setLoanDate(LocalDate loanDate) {
         this.loanDate = loanDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 }

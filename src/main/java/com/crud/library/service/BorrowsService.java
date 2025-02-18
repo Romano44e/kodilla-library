@@ -13,7 +13,6 @@ import com.crud.library.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -47,7 +46,7 @@ public class BorrowsService {
         BookLoans bookLoan = new BookLoans();
         bookLoan.setCopyOfBookId(firstAvailableBook.getId());
         bookLoan.setUserId(userId);
-        bookLoan.setLoanDate(Date.valueOf(LocalDate.now()));
+        bookLoan.setLoanDate(LocalDate.now());
 
         bookLoansRepository.save(bookLoan);
 
@@ -68,9 +67,9 @@ public class BorrowsService {
                 .toList();
         BookLoans first = list.getFirst();
         int bookLoanId = first.getId();
-        bookLoansRepository.setReturnDateOfBookCopy(bookLoanId, Date.valueOf(LocalDate.now()));
+        bookLoansRepository.setReturnDateOfBookCopy(bookLoanId, LocalDate.now());
 
-        return new ReturnResponseDto(copyofBookIdBySignature, userIdByCopyOfBookId, Date.valueOf(LocalDate.now()));
+        return new ReturnResponseDto(copyofBookIdBySignature, userIdByCopyOfBookId, LocalDate.now());
     }
 
 }

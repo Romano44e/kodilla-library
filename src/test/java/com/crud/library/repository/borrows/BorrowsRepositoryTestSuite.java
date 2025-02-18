@@ -26,8 +26,8 @@ public class BorrowsRepositoryTestSuite {
         BookLoans bookLoan = new BookLoans();
         bookLoan.setCopyOfBookId(6);
         bookLoan.setUserId(4);
-        bookLoan.setLoanDate(Date.valueOf(LocalDate.now()));
-        bookLoan.setReturnDate(Date.valueOf(LocalDate.now().plusDays(30)));
+        bookLoan.setLoanDate(LocalDate.now());
+        bookLoan.setReturnDate(LocalDate.now().plusDays(30));
         //When
         bookLoansRepository.save(bookLoan);
         //Then
